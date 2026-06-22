@@ -80,3 +80,21 @@ def _chunk_by_sentences(text: str, size: int, overlap: int) -> list[str]:
         chunks.append(" ".join(current))
 
     return chunks
+
+
+# ---------------------------------------------------------------------------
+# Loader
+# ---------------------------------------------------------------------------
+
+def _parse_doc_name(raw_text: str) -> str:
+    """
+        Extract the document name from the first line of the raw text, which should start with "Doc:".
+        For example, if the first line is "Doc: Returns & Refunds", this function will return "Returns & Refunds".
+            @param raw_text: The raw text of the document, which should contain a line starting with "Doc:".
+            @return: The extracted document name for display purposes.
+    """
+    first_line = raw_text.strip().splitlines()[0]
+    if first_line.startswith("Doc:"):
+        return first_line[4:].strip()
+    return first_line
+

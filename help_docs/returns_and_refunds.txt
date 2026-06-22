@@ -1,3 +1,5 @@
+Doc: Returns & Refunds
+
 Items can be returned within 30 days of delivery. Unopened items receive a full refund. Opened items are
 subject to a 15% restocking fee unless the item is defective. Refunds are issued to the original payment
 method within 5–7 business days of the returned item being received. Items marked final sale cannot be
