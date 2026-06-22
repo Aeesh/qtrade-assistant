@@ -98,3 +98,53 @@ def _parse_doc_name(raw_text: str) -> str:
         return first_line[4:].strip()
     return first_line
 
+
+def load_chunks_from_directory(docs_dir: str | Path) -> list[DocumentChunk]:
+    """
+    go through the dcs directory and read every .txt file, and return a flat list of
+    DocumentChunk objects ready for embedding.
+
+    Each chunk has:
+      - chunk_id   — stable identifier usable as a vector store key
+      - source_doc — display name for citations ("Returns & Refunds")
+      - source_file — stem for filtering ("returns_and_refunds")
+      - text        — the chunk content
+      - char_start  — byte offset of source data for debugging
+    """
+    docs_path = Path(docs_dir)
+    if not docs_path.is_dir():
+        raise FileNotFoundError(f"Docs directory not found: {docs_path}")
+
+    all_chunks: list[DocumentChunk] = []
+
+    # iterate through all .txt files in the directory, sorted for consistency
+    for txt_file in sorted(docs_path.glob("*.txt")):
+        raw = txt_file.read_text(encoding="utf-8")
+        doc_name = _parse_doc_name(raw)
+        file_stem = txt_file.stem
+
+        # strip the metadata header lines before chunking
+        body_lines = [
+            line for line in raw.splitlines()
+            if not line.startswith("Doc:")
+        ]
+        body = " ".join(body_lines).strip()
+
+        raw_chunks = _chunk_by_sentences(body, CHUNK_SIZE, CHUNK_OVERLAP)
+
+        char_cursor = 0
+        # create DocumentChunk objects for each chunk and keep track of the character offset
+        for idx, chunk_text in enumerate(raw_chunks):
+            all_chunks.append(
+                DocumentChunk(
+                    chunk_id=f"{file_stem}::{idx}",
+                    source_doc=doc_name,
+                    source_file=file_stem,
+                    text=chunk_text,
+                    char_start=char_cursor,
+                )
+            )
+            char_cursor += len(chunk_text)
+
+    return all_chunks
+
