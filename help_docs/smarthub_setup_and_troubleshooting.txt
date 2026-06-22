@@ -1,0 +1,4 @@
+To reset the SmartHub, hold the back button for 10 seconds until the light blinks amber. To connect to
+Wi-Fi, open the QTrade app, go to Devices &gt; Add, and follow the prompts (2.4GHz networks only). If the
+hub won’t connect, restart your router and retry. Firmware updates install automatically overnight when
+the hub is powered and online.
