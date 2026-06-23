@@ -86,17 +86,18 @@ def _chunk_by_sentences(text: str, size: int, overlap: int) -> list[str]:
 # Loader
 # ---------------------------------------------------------------------------
 
-def _parse_doc_name(raw_text: str) -> str:
+def _parse_doc_name(raw_text: str, fallback: str) -> str:
     """
         Extract the document name from the first line of the raw text, which should start with "Doc:".
         For example, if the first line is "Doc: Returns & Refunds", this function will return "Returns & Refunds".
             @param raw_text: The raw text of the document, which should contain a line starting with "Doc:".
+            @param fallback: The fallback document name to use if the "Doc:" line is missing.
             @return: The extracted document name for display purposes.
     """
     first_line = raw_text.strip().splitlines()[0]
     if first_line.startswith("Doc:"):
         return first_line[4:].strip()
-    return txt_file.stem.replace("_", " ").title() # fallback to the file stem if the "Doc:" line is missing
+    return fallback
 
 
 def load_chunks_from_directory(docs_dir: str | Path) -> list[DocumentChunk]:
@@ -120,7 +121,7 @@ def load_chunks_from_directory(docs_dir: str | Path) -> list[DocumentChunk]:
     # iterate through all .txt files in the directory, sorted for consistency
     for txt_file in sorted(docs_path.glob("*.txt")):
         raw = txt_file.read_text(encoding="utf-8")
-        doc_name = _parse_doc_name(raw)
+        doc_name = _parse_doc_name(raw, txt_file.stem.replace("_", " ").title()) # fallback to the file stem if the "Doc:" line is missing
         file_stem = txt_file.stem
 
         # strip the metadata header lines before chunking
