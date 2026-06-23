@@ -29,6 +29,7 @@ _SAFETY_PATTERNS = re.compile(
     r"|electric.?shock"
     r"|melt(ing|ed)?"
     r"|explod(e|ing|ed)?"
+    r"|explosion(s)?"
     r"|overheating"
     r"|smell(s|ing)?.{0,15}(burning|smoke|chemical)"
     r")\b",
