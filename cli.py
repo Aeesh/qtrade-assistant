@@ -157,12 +157,12 @@ def main() -> None:
         print("Running Appendix B sample queries …")
         for query in APPENDIX_B_QUERIES:
             response = assistant.handle(query)
-            print(response.pretty())
+            print(response)
         return
 
     if args.query:
         response = assistant.handle(args.query)
-        print(response.pretty())
+        print(response)
         return
 
     # Interactive REPL
@@ -179,7 +179,7 @@ def main() -> None:
                 print("Goodbye!")
                 break
             response = assistant.handle(user_input)
-            print(response.pretty())
+            print(response)
     except KeyboardInterrupt:
         print("\nGoodbye!")
 

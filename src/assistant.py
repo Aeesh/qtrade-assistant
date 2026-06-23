@@ -40,7 +40,7 @@ class AssistantResponse:
     retrieved_chunks: list[RetrievedChunk] = field(default_factory=list)
     cited_docs: tuple[str, ...] = ()
 
-    def pretty(self) -> str:
+    def __str__(self) -> str:
         """Human-readable string for CLI / logging output."""
         lines = [
             f"\n{'='*60}",
