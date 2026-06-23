@@ -66,8 +66,8 @@ def generate_answer(
     """
     Generate a cited answer from *retrieved* chunks using *provider*.
 
-    If *retrieved* is empty the function returns an ungrounded "I don't
-    know" response without calling the LLM — saving a round-trip.
+    If retrieved is empty the function returns an ungrounded "I don't know"
+    response without calling the LLM — saving a round-trip.
     """
     if not retrieved:
         return GeneratedAnswer(
