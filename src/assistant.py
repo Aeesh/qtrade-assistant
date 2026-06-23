@@ -18,7 +18,7 @@ from pathlib import Path
 
 from src.escalation.rules import EscalationDecision, EscalationTrigger, evaluate_escalation
 from src.generation.answer_generator import GeneratedAnswer, generate_answer
-from src.llm.basellm import LLMProvider
+from src.llm import LLMProvider
 from src.ingestion.document_loader import load_chunks_from_directory
 from src.retrieval.vector_store import QTradeVectorStore, RetrievedChunk
 

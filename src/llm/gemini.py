@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from src.llm.basellm import LLMProvider
+from src.llm import LLMProvider
 
 import requests
 import os

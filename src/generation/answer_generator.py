@@ -6,7 +6,7 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass
 
 from src.retrieval.vector_store import RetrievedChunk
-from src.llm.basellm import LLMProvider
+from src.llm import LLMProvider
 
 logger = logging.getLogger(__name__)
 

@@ -29,8 +29,7 @@ from dotenv import load_dotenv
 sys.path.insert(0, str(Path(__file__).parent))
 
 from src.assistant import QTradeAssistant
-from src.llm.ollama import OllamaProvider
-from src.llm.gemini import GeminiProvider
+from src.llm import OllamaProvider, GeminiProvider
 
 load_dotenv()
 
