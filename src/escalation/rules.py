@@ -22,16 +22,19 @@ class EscalationTrigger(Enum):
 
 _SAFETY_PATTERNS = re.compile(
     r"\b("
-    r"burn(ing|t|s)?"
-    r"|smok(e|ing)"
-    r"|spark(s|ing)?"
-    r"|on fire"
-    r"|electric.?shock"
-    r"|melt(ing|ed)?"
-    r"|explod(e|ing|ed)?"
-    r"|explosion(s)?"
-    r"|overheating"
-    r"|smell(s|ing)?.{0,15}(burning|smoke|chemical)"
+    # direct fire/heat words
+    r"fire|flame(s)?|burn(ing|t|s)?|hot|heat(ing)?"
+    r"|smok(e|ing)|spark(s|ing)?"
+    # electrical
+    r"|electric(al)?.?shock|short.?circuit"
+    # physical damage indicators
+    r"|melt(ing|ed)?|explod(e|ing|ed)?|explosion(s)?"
+    r"|crack(ed|ing)?|shatter(ed|ing)?"
+    # smell as a hazard signal — any unusual smell from a device is a hazard
+    r"|smell(s|ing)?|odou?r|fume(s)?"
+    # temperature language
+    r"|overheating|overheat(s|ed)?|too (hot|warm)|really (hot|warm)|very (hot|warm)|gets? (hot|warm)"
+    r"|warm(ing)?|scorch(ed|ing)?"
     r")\b",
     re.IGNORECASE,
 )
