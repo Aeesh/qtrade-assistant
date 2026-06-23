@@ -148,3 +148,15 @@ def load_chunks_from_directory(docs_dir: str | Path) -> list[DocumentChunk]:
 
     return all_chunks
 
+
+# ---------------------------------------------------------------------------
+# helper
+# ---------------------------------------------------------------------------
+
+if __name__ == "__main__":
+    import sys
+
+    docs = load_chunks_from_directory(sys.argv[1] if len(sys.argv) > 1 else "help_docs")
+    for chunk in docs:
+        print(f"[{chunk.chunk_id}] ({chunk.source_doc})\n  {chunk.text[:80]}…\n")
+    print(f"Total chunks: {len(docs)}")
