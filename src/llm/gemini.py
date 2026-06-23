@@ -2,6 +2,11 @@ from __future__ import annotations
 
 from src.llm.basellm import LLMProvider
 
+import requests
+import os
+import logging
+
+logger = logging.getLogger(__name__)
 
 class GeminiProvider(LLMProvider):
     """

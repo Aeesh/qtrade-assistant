@@ -5,8 +5,6 @@ import os
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 
-import requests
-
 from src.retrieval.vector_store import RetrievedChunk
 from src.llm.basellm import LLMProvider
 

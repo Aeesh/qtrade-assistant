@@ -2,6 +2,13 @@ from __future__ import annotations
 
 from src.llm.basellm import LLMProvider
 
+import requests
+import logging
+
+
+logger = logging.getLogger(__name__)
+
+
 class OllamaProvider(LLMProvider):
     """
     Calls a locally running Ollama instance.
