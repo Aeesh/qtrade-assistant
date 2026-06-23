@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 
 EMBEDDING_MODEL_NAME = "BAAI/bge-small-en-v1.5"
-DEFAULT_TOP_K = 5
+DEFAULT_TOP_K = 3
 CHROMA_COLLECTION_NAME = "qtrade_support_docs"
 DEFAULT_PERSIST_DIR = "./chroma_db"
 

@@ -121,7 +121,7 @@ class QTradeAssistant:
 
     @param docs_dir    : path to the directory of .txt help doc files
     @param provider    : an LLMProvider instance (OllamaProvider or GeminiProvider)
-    @param top_k       : how many chunks to retrieve per query (default: 5)
+    @param top_k       : how many chunks to retrieve per query (default: 3)
     @param persist_dir : ChromaDB persistence directory (default: ./chroma_db)
     """
 
@@ -129,7 +129,7 @@ class QTradeAssistant:
         self,
         docs_dir: str | Path,
         provider: LLMProvider,
-        top_k: int = 5,
+        top_k: int = 3,
         persist_dir: str = "./chroma_db",
     ) -> None:
         self._provider = provider
