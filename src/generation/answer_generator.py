@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import logging
 import os
+import re as _re
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 
@@ -19,10 +20,12 @@ _SYSTEM_PROMPT = """You are the QTrade customer support assistant.
 Answer questions ONLY using the provided context excerpts.
 Rules:
 1. If the context contains the answer, respond concisely and end with [Source: <doc name>].
-2. If the context does NOT contain enough information to answer, respond with exactly:
-   "I don't have enough information in our help docs to answer that. [Escalate]"
-3. Never invent facts not present in the context.
-4. Be friendly, polite and professional."""
+2. If the message is a greeting or conversational (not a support question), respond warmly
+   and ask how you can help. Do NOT add [Source:] or [Escalate] for these.
+3. If the context does NOT contain enough information to answer a genuine support question,
+   respond with exactly: "I don't have enough information in our help docs to answer that. [Escalate]"
+4. Never invent facts not present in the context.
+5. Be friendly, polite and professional."""
 
 
 def _build_user_prompt(query: str, retrieved: list[RetrievedChunk]) -> str:
@@ -82,9 +85,9 @@ def generate_answer(
     user_prompt = _build_user_prompt(query, retrieved)
     raw_text = provider.complete(_SYSTEM_PROMPT, user_prompt)
 
-    cited_docs = tuple(
-        {r.chunk.source_doc for r in retrieved}
-    )
+    source_tags = _re.findall(r"\[Source:\s*([^\]]+)\]", raw_text, _re.IGNORECASE)
+    cited_docs = tuple(dict.fromkeys(tag.strip() for tag in source_tags))
+
     is_grounded = "[Escalate]" not in raw_text
 
     return GeneratedAnswer(
