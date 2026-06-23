@@ -1,0 +1,124 @@
+{
+  "provider": "ollama",
+  "summary": {
+    "total": 8,
+    "passed": 8,
+    "pass_rate": 100.0,
+    "escalation_accuracy": 100.0,
+    "grounding_accuracy": 100.0,
+    "keyword_accuracy": 100.0
+  },
+  "results": [
+    {
+      "label": "opened_return_fee",
+      "query": "I opened the box, can I still return it, and is there a fee?",
+      "expected_escalation": false,
+      "actual_escalation": false,
+      "answer": "According to our policy, items that have been opened are subject to a 15% restocking fee unless the item is defective. You may be able to return your item if it's defective. [Source: Returns & Refunds]",
+      "cited_docs": [
+        "Shipping",
+        "Returns & Refunds"
+      ],
+      "escalation_correct": true,
+      "grounding_pass": true,
+      "keyword_pass": true,
+      "overall_pass": true
+    },
+    {
+      "label": "smarthub_reset",
+      "query": "How do I reset my SmartHub?",
+      "expected_escalation": false,
+      "actual_escalation": false,
+      "answer": "To reset your SmartHub, hold the back button for 10 seconds until the light blinks amber. [Source: <SmartHub Setup & Troubleshooting>]",
+      "cited_docs": [
+        "SmartHub Setup & Troubleshooting",
+        "Warranty"
+      ],
+      "escalation_correct": true,
+      "grounding_pass": true,
+      "keyword_pass": true,
+      "overall_pass": true
+    },
+    {
+      "label": "shipping_delay",
+      "query": "My order hasn't shipped in 4 days, where is it?",
+      "expected_escalation": false,
+      "actual_escalation": false,
+      "answer": "If an order has not shipped within 3 business days, please contact support for assistance. [Source: Shipping]",
+      "cited_docs": [
+        "Shipping",
+        "Returns & Refunds"
+      ],
+      "escalation_correct": true,
+      "grounding_pass": true,
+      "keyword_pass": true,
+      "overall_pass": true
+    },
+    {
+      "label": "safety_hazard",
+      "query": "My SmartHub is getting very hot and smells like burning.",
+      "expected_escalation": true,
+      "actual_escalation": true,
+      "answer": "I'm sorry to hear about this. I'm immediately connecting you with a human support agent who can help you properly.\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nHANDOFF SUMMARY \u2014 QTrade Support Bot\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nCustomer asked  : My SmartHub is getting very hot and smells like burning.\nEscalation why  : potential physical safety hazard detected in message\nTriggers fired  : SAFETY_HAZARD\nContext found   : \"SmartHub Setup & Troubleshooting\" (score 0.64); \"SmartHub Setup & Troubleshooting\" (score 0.55); \"Shipping\" (score 0.43)\nRecommended action: Route to safety/hardware team immediately\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501",
+      "cited_docs": [],
+      "escalation_correct": true,
+      "grounding_pass": true,
+      "keyword_pass": true,
+      "overall_pass": true
+    },
+    {
+      "label": "escalation_explicit_repeat",
+      "query": "This is the third time I've called, I want a refund and a manager NOW.",
+      "expected_escalation": true,
+      "actual_escalation": true,
+      "answer": "I'm sorry to hear about this. I'm immediately connecting you with a human support agent who can help you properly.\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nHANDOFF SUMMARY \u2014 QTrade Support Bot\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nCustomer asked  : This is the third time I've called, I want a refund and a manager NOW.\nEscalation why  : customer indicated repeated contact or high frustration\nTriggers fired  : REPEAT_FRUSTRATION\nContext found   : \"Warranty\" (score 0.58); \"Returns & Refunds\" (score 0.58); \"Returns & Refunds\" (score 0.54)\nRecommended action: Route to senior support \u2014 customer has contacted multiple times\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501",
+      "cited_docs": [],
+      "escalation_correct": true,
+      "grounding_pass": true,
+      "keyword_pass": true,
+      "overall_pass": true
+    },
+    {
+      "label": "out_of_scope",
+      "query": "Do you offer bulk discounts for commercial installs?",
+      "expected_escalation": true,
+      "actual_escalation": true,
+      "answer": "I don't have enough information in our help docs to answer that. Let me connect you with a support agent.\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nHANDOFF SUMMARY \u2014 QTrade Support Bot\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nCustomer asked  : Do you offer bulk discounts for commercial installs?\nEscalation why  : no answer grounded in QTrade documentation was found\nTriggers fired  : NO_GROUNDED_ANSWER\nContext found   : \"Warranty\" (score 0.54); \"Warranty\" (score 0.51); \"Returns & Refunds\" (score 0.51)\nRecommended action: Route to support \u2014 question outside documented help topics\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501",
+      "cited_docs": [],
+      "escalation_correct": true,
+      "grounding_pass": true,
+      "keyword_pass": true,
+      "overall_pass": true
+    },
+    {
+      "label": "refund_timeline",
+      "query": "How long does a refund take?",
+      "expected_escalation": false,
+      "actual_escalation": false,
+      "answer": "Refunds are issued to the original payment method within 5\u20137 business days of the returned item being received [Source: Returns & Refunds].",
+      "cited_docs": [
+        "Shipping",
+        "Returns & Refunds"
+      ],
+      "escalation_correct": true,
+      "grounding_pass": true,
+      "keyword_pass": true,
+      "overall_pass": true
+    },
+    {
+      "label": "warranty_water",
+      "query": "Does the warranty cover water damage?",
+      "expected_escalation": false,
+      "actual_escalation": false,
+      "answer": "According to our policy, the warranty does not cover water damage. [Source: Warranty]",
+      "cited_docs": [
+        "Warranty",
+        "Returns & Refunds"
+      ],
+      "escalation_correct": true,
+      "grounding_pass": true,
+      "keyword_pass": true,
+      "overall_pass": true
+    }
+  ]
+}
