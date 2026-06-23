@@ -192,8 +192,9 @@ class QTradeAssistant:
             return AssistantResponse(
                 query=query,
                 answer=(
-                    "I wasn't able to find an answer to that in our help docs. "
-                    "Let me connect you with a support agent.\n\n" + handoff
+                    "It looks like I'm not able to help with that through our help docs. "
+                    "Let me connect you with a support agent who can assist you directly.\n\n"
+                    + handoff
                 ),
                 is_escalated=True,
                 escalation_decision=post_decision,
