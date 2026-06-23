@@ -82,7 +82,7 @@ def _build_provider(args: argparse.Namespace):
             file=sys.stderr,
         )
         sys.exit(1)
-    return GeminiProvider(model=args.model or "gemini-2.0-flash", api_key=api_key)
+    return GeminiProvider(model=args.model or "models/gemini-3.1-flash-lite", api_key=api_key)
 
 
 # ---------------------------------------------------------------------------
@@ -102,7 +102,7 @@ def main() -> None:
     parser.add_argument(
         "--model",
         default=None,
-        help="Model name override (e.g. llama3.2, gemini-2.0-flash)",
+        help="Model name override (e.g. llama3.2, models/gemini-3.1-flash-lite)",
     )
     parser.add_argument(
         "--ollama-url",
@@ -137,8 +137,8 @@ def main() -> None:
     parser.add_argument(
         "--top-k",
         type=int,
-        default=5,
-        help="Number of chunks to retrieve per query (default: 5)",
+        default=3,
+        help="Number of chunks to retrieve per query (default: 3)",
     )
     args = parser.parse_args()
 

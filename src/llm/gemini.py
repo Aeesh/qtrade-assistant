@@ -1,9 +1,11 @@
 from __future__ import annotations
 
+from google import genai
+
 from src.llm import LLMProvider
 
-import requests
 import os
+import time
 import logging
 
 logger = logging.getLogger(__name__)
@@ -16,34 +18,46 @@ class GeminiProvider(LLMProvider):
 
     def __init__(
         self,
-        model: str = "gemini-2.0-flash",
+        model: str = "models/gemini-3.1-flash-lite",
         api_key: str | None = None,
     ) -> None:
-        self.model = model
-        self.api_key = api_key or os.environ.get("GEMINI_API_KEY", "")
-        if not self.api_key:
+        self._api_key = api_key or os.environ.get("GEMINI_API_KEY", "")
+        if not self._api_key:
             raise EnvironmentError(
                 "GEMINI_API_KEY not set. "
                 "Get a free key at https://aistudio.google.com"
             )
+        self._model_name = model
+        self._client = genai.Client(
+            api_key=self._api_key
+        )
+
 
     def complete(self, system: str, user: str) -> str:
-        url = (
-            f"https://generativelanguage.googleapis.com/v1beta/models/"
-            f"{self.model}:generateContent?key={self.api_key}"
-        )
-        payload = {
-            "systemInstruction": {"parts": [{"text": system}]},
-            "contents": [{"parts": [{"text": user}]}],
-        }
-        try:
-            response = requests.post(url, json=payload, timeout=30)
-            response.raise_for_status()
-            data = response.json()
-            return (
-                data["candidates"][0]["content"]["parts"][0]["text"].strip()
-            )
-        except (requests.RequestException, KeyError) as exc:
-            logger.error("Gemini request failed: %s", exc)
-            raise
+        for attempt in range(3):
+            try:
+                response = self._client.models.generate_content(
+                    model=self._model_name,
+                    contents=user,
+                    config={
+                        "system_instruction": system,
+                    },
+                )
+
+                if not response.text:
+                    raise ValueError("Gemini returned empty response")
+
+                return response.text.strip()
+
+            except Exception as e:
+                logger.warning(
+                    "Gemini request failed (attempt %s/3): %s",
+                    attempt + 1,
+                    e,
+                )
+
+                if attempt == 2:
+                    raise
+
+                time.sleep(2 ** attempt)
 
