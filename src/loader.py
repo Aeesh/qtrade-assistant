@@ -96,7 +96,7 @@ def _parse_doc_name(raw_text: str) -> str:
     first_line = raw_text.strip().splitlines()[0]
     if first_line.startswith("Doc:"):
         return first_line[4:].strip()
-    return first_line
+    return txt_file.stem.replace("_", " ").title() # fallback to the file stem if the "Doc:" line is missing
 
 
 def load_chunks_from_directory(docs_dir: str | Path) -> list[DocumentChunk]:
