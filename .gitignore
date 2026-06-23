@@ -1,0 +1,4 @@
+draft/
+.env
+.venv/
+__pycache__/
