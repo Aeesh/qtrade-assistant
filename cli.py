@@ -166,6 +166,7 @@ def main() -> None:
 
     # Interactive REPL
     print(BANNER)
+    goodbye_message = "Bye! always here to help you with QTrade support."
     try:
         while True:
             try:
@@ -175,12 +176,12 @@ def main() -> None:
             if not user_input:
                 continue
             if user_input.lower() in {"exit", "quit", "bye"}:
-                print("Goodbye!")
+                print(goodbye_message)
                 break
             response = assistant.handle(user_input)
             print(response)
     except KeyboardInterrupt:
-        print("\nGoodbye!")
+        print(f"\n{goodbye_message}")
 
 
 if __name__ == "__main__":
